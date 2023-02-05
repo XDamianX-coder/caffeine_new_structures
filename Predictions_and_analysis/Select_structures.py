@@ -238,12 +238,12 @@ def update_dataframe_with_similarity(df, number_of_orign_indol):
     except:
         return print("There is some issue, please check the code...")
 
-#Preparation of report for given initial (indol) structure number 
-#(based on columns from file entitled: Proposed_structures_with_AI_indole_tanimoto_similarity_.xlsx)
+#Preparation of report for given initial (caffeine) structure number 
+#(based on columns from file entitled: Proposed_structures_with_AI_caffeine_tanimoto_similarity_.xlsx)
 def create_a_report_for_each_structure(number):
     name = str('structure_'+str(number))
     try:
-        df_1 = select_structures(number, '../Data/Indole_-_cytoprotekcja_.xlsx')
+        df_1 = select_structures(number, '../Data/initial_caffeine.xlsx')
         name = update_dataframe_with_similarity(df_1, number)
         name = swap_columns(name, 'Aktywność cytoprotekcyjna [%] - random forest predicted', 'Tanimoto similarity')
         name = swap_columns(name, 'Aktywność cytoprotekcyjna [%] - MLR predicted', 'Tanimoto similarity')
@@ -268,16 +268,16 @@ if __name__ == "__main__":
     selected_structures = list(configuration_file['number_of_structure'])
     print("Selected structures: ", selected_structures)
     #Generated structures load and preparation
-    File_to_work_with = '../Data/Proposed_structures_with_AI_indole_tanimoto_similarity_.xlsx'
+    File_to_work_with = '../Data/Proposed_structures_with_AI_caffeine_tanimoto_similarity_.xlsx'
     
     molecular_descriptors_initials, molecular_descriptors_generated, initial, generated_smiles = prepare_data(File_to_work_with)
 
     molecular_descriptors_initials, molecular_descriptors_generated = deletion_of_invalid_data(molecular_descriptors_initials, molecular_descriptors_generated)
 
     #3 molecular descriptors to be analyzed, can be set up according to Mordred library
-    descriptor1 = 'MID' # First "blind" selection: 'GATS3c'
+    descriptor1 = 'ABC' # First "blind" selection: 'GATS3c'
     descriptor2 = 'AATS2dv' # First "blind" selection: 'WPol'
-    descriptor3 = 'ETA_dPsi_A' # First "blind" selection: 'AATS0Z'
+    descriptor3 = 'GATS1i' # First "blind" selection: 'AATS0Z'
 
     initial_strcutures, generated_strcutures = create_df_with_molecular_descriptors(molecular_descriptors_initials, molecular_descriptors_generated, initial, generated_smiles)
 
