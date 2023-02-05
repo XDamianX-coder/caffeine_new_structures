@@ -20,6 +20,7 @@
         3.4. Decision Tree regression analysis: ../Predictions_and_analysis/Predictive_model-Decision_Tree.ipynb
         3.5 Random forest regression: ../Predictions_and_analysis/Predictive_model-Random_forest.ipynb
     4. Reporting of comparable structures based on three chemical descriptors and the SYBA score: ../Predictions_and_analysis/Select_structures.py
+    5. Reporting of all structures created with a SYBA score greater than the minimal SYBA score from the initial caffeines: ../Prediction_and_analysis/create_whole_report.py
 
 ## The results storage
     The results are stored in the `Data` folder.
