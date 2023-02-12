@@ -31,20 +31,20 @@ if __name__ == "__main__":
     df_gen_fin = df_gen_fin.round({'SYBA score': 2})
 
     #assign predicted value
-    df_gen_fin['Aktywność cytoprotekcyjna [%] - MLR predicted'] = 0
-    df_gen_fin['Aktywność cytoprotekcyjna [%] - random forest predicted'] = 0
+    #df_gen_fin['Aktywność cytoprotekcyjna [%] - MLR predicted'] = 0
+    df_gen_fin['Aktywność cytoprotekcyjna [%] - decision tree predicted'] = 0
 
-    MLR_pred = pd.read_excel('../Data/Predicted_activity.xlsx')
-    rf_pred = pd.read_excel('../Data/Predicted_random_forest.xlsx')
+    #MLR_pred = pd.read_excel('../Data/Predicted_activity.xlsx')
+    dt_pred = pd.read_excel('../Data/Predicted_activity_DT.xlsx')
 
     try:
         index_ = list(df_gen_fin.index)
 
         for i in index_:
-            for n, structure in enumerate(MLR_pred['SMILES']):
+            for n, structure in enumerate(dt_pred['SMILES']):
                 if df_gen_fin['SMILES'][i] == structure:
-                     df_gen_fin['Aktywność cytoprotekcyjna [%] - MLR predicted'][i] = round(MLR_pred['Predicted activity'][n],2)
-                     df_gen_fin['Aktywność cytoprotekcyjna [%] - random forest predicted'][i] = round(rf_pred['Predicted activity'][n],2)
+                     #df_gen_fin['Aktywność cytoprotekcyjna [%] - MLR predicted'][i] = round(MLR_pred['Predicted activity'][n],2)
+                     df_gen_fin['Aktywność cytoprotekcyjna [%] - decision tree predicted'][i] = round(dt_pred['Predicted activity'][n],2)
                 else:
                     pass
     except:
